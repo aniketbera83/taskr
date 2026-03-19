@@ -1,19 +1,14 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "taskmanager/wsgi.py",
-      "use": "@vercel/python",
-      "config": {
-        "maxLambdaSize": "15mb",
-        "runtime": "python3.11"
-      }
+  "functions": {
+    "wsgi.py": {
+      "runtime": "@vercel/python"
     }
-  ],
-  "routes": [
+  },
+  "rewrites": [
     {
-      "src": "/(.*)",
-      "dest": "taskmanager/wsgi.py"
+      "source": "/(.*)",
+      "destination": "/wsgi.py"
     }
   ]
 }
