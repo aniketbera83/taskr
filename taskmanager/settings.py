@@ -2,10 +2,10 @@ from pathlib import Path
 
 import os
 SECRET_KEY = os.environ.get('0xc93f4df8DCa3217cE298F9fC8b8911a91E6b95F0', 'fallback-dev-key-only')
-DEBUG = True
+DEBUG = False
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-ALLOWED_HOSTS = ['*.onrender.com']
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -59,7 +59,8 @@ DATABASES = {
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
